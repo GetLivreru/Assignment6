@@ -25,27 +25,11 @@ class Vertex<V> {
     }
 }
 
+class WeightedGraph<V> {
+    private Map<Vertex<V>, List<Vertex<V>>> map;
+    private Map<Vertex<V>, Map<Vertex<V>, Double>> weights;
 
-
-
-
-public class Edge<Vertex> {
-    private Vertex source;
-    private Vertex dest;
-    private Double weight;
-    public Edge(Vertex source,Vertex dest,Double weight){
-        this.source = source;
-        this.dest = dest;
-        this.weight = weight;
+    public WeightedGraph() {
+        this.map = new HashMap<>();
+        this.weights = new HashMap<>();
     }
-}
-
-private Map<Vertex,List<Edge<Vertex>>> map = new HashMap<>();
-
-public class Vertex<V>{
-    private V data;
-    private Map<Vertex<V>,Double>  adjacentVertices; 
-    public void addAdjacentVertices(Vertex<V> destination,double weight){
-       
-    }
-}
