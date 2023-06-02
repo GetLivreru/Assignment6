@@ -54,3 +54,9 @@ class WeightedGraph<V> {
 interface Search<V> {
     void search(Vertex<V> start);
 }
+class BreadthFirstSearch<V> implements Search<V> {
+    private WeightedGraph<V> graph;
+
+    public BreadthFirstSearch(WeightedGraph<V> graph) {
+        this.graph = graph;
+    }
