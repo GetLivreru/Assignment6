@@ -33,3 +33,21 @@ class WeightedGraph<V> {
         this.map = new HashMap<>();
         this.weights = new HashMap<>();
     }
+     public void addVertex(Vertex<V> vertex) {
+        map.put(vertex, new ArrayList<>());
+        weights.put(vertex, new HashMap<>());
+    }
+
+    public void addEdge(Vertex<V> source, Vertex<V> dest, Double weight) {
+        map.get(source).add(dest);
+        weights.get(source).put(dest, weight);
+    }
+
+    public List<Vertex<V>> getAdjacentVertices(Vertex<V> vertex) {
+        return map.get(vertex);
+    }
+
+    public Double getWeight(Vertex<V> source, Vertex<V> dest) {
+        return weights.get(source).get(dest);
+    }
+}
