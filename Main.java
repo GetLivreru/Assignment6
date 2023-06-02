@@ -59,4 +59,25 @@ class BreadthFirstSearch<V> implements Search<V> {
 
     public BreadthFirstSearch(WeightedGraph<V> graph) {
         this.graph = graph;
+}
+    @Override
+    public void search(Vertex<V> start) {
+        Set<Vertex<V>> visited = new HashSet<>();
+        Queue<Vertex<V>> queue = new LinkedList<>();
+        queue.add(start);
+        visited.add(start);
+
+        while (!queue.isEmpty()) {
+            Vertex<V> currentVertex = queue.poll();
+            System.out.println("Visited: " + currentVertex.getData());
+
+            List<Vertex<V>> adjacentVertices = graph.getAdjacentVertices(currentVertex);
+            for (Vertex<V> neighbor : adjacentVertices) {
+                if (!visited.contains(neighbor)) {
+                    queue.add(neighbor);
+                    visited.add(neighbor);
+                }
+            }
+        }
     }
+}
