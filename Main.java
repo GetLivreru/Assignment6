@@ -51,3 +51,6 @@ class WeightedGraph<V> {
         return weights.get(source).get(dest);
     }
 }
+interface Search<V> {
+    void search(Vertex<V> start);
+}
