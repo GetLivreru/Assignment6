@@ -87,3 +87,40 @@ class DijkstraSearch<V> implements Search<V> {
     public DijkstraSearch(WeightedGraph<V> graph) {
         this.graph = graph;
     }
+    @Override
+    public void search(Vertex<V> start) {
+        PriorityQueue<Vertex<V>> minHeap = new PriorityQueue<>(Comparator.comparingDouble(vertex -> getDistance(start, vertex)));
+        Map<Vertex<V>, Double> distance = new HashMap<>();
+        Map<Vertex<V>, Vertex<V>> previous = new HashMap<>();
+
+        // Initialize distances to infinity
+        for (Vertex<V> vertex : graph.getAdjacentVertices(start)) {
+            distance.put(vertex, Double.POSITIVE_INFINITY);
+        }
+
+        distance.put(start, 0.0);
+
+        // Add the start vertex to the heap
+        minHeap.add(start);
+
+        while (!minHeap.isEmpty()) {
+            Vertex<V> currentVertex = minHeap.poll();
+
+            for (Vertex<V> neighbor : graph.getAdjacentVertices(currentVertex)) {
+                double newDistance = distance.get(currentVertex) + graph.getWeight(currentVertex, neighbor);
+
+                if (newDistance < distance.get(neighbor)) {
+                    distance.put(neighbor, newDistance);
+                    previous.put(neighbor, currentVertex);
+                    minHeap.add(neighbor);
+                }
+            }
+        }
+    }
+
+    private double getDistance(Vertex<V> start, Vertex<V> dest) {
+        // Implement your own distance calculation logic here
+        // For example, you can use the Euclidean distance between the vertices' coordinates
+        return 0.0;
+    }
+}
